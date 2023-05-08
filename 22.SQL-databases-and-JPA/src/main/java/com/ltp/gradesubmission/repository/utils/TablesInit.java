@@ -52,7 +52,7 @@ public class TablesInit {
         //store grades in the DB
         Grade grade_A = new Grade("A", students[0], courses[4]); //Harry, Physics
         Grade grade_B = new Grade("B", students[2], courses[3]); //Hermione, Deutsch
-        Grade grade_C = new Grade("C", students[2], courses[3]); //Hermione, Deutsch
+        Grade grade_C = new Grade("C", students[2], courses[4]); //Hermione, Physics
         Grade grade_D = new Grade("D", students[3], courses[0]); //Neville, Math
         Grade grade_E = new Grade("E", students[0], courses[0]); //Harry, Math
         Grade grade_F = new Grade("F", students[3], courses[4]); //Neville, Physics

@@ -7,7 +7,11 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "grade")
+@Table(name = "grade", uniqueConstraints = {
+        /*each grade must have a UNIQUE pair for values of student_id and course_id. that means that can not be 2 or more
+        * grades having the same values for that pair*/
+        @UniqueConstraint(columnNames = {"student_id", "course_id"})
+    })
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
