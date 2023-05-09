@@ -1,6 +1,7 @@
 package com.ltp.gradesubmission.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ltp.gradesubmission.validation.Score;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -25,6 +26,7 @@ public class Grade {
 
     @NotNull
     @Column(name = "score", nullable = false)
+    @Score(message = "Score value is not valid")
     private String score;
 
     /* this tells JPA that many  Grades can be associated to one student

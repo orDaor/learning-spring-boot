@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ltp.gradesubmission.entity.Course;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,7 @@ public class CourseController {
     }
 
     @PostMapping
-    public ResponseEntity<Course> saveCourse(@RequestBody Course course) {
+    public ResponseEntity<Course> saveCourse(@Valid @RequestBody Course course) {
         Course savedCourse = courseService.saveCourse(course);
         return new ResponseEntity<>(savedCourse, HttpStatus.CREATED);
     }

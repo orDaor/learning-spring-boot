@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ltp.gradesubmission.entity.Grade;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/grade")
 public class GradeController {
@@ -31,13 +33,13 @@ public class GradeController {
     }
 
     @PostMapping("/student/{studentId}/course/{courseId}")
-    public ResponseEntity<Grade> saveGrade(@RequestBody Grade grade, @PathVariable Long studentId, @PathVariable Long courseId) {
+    public ResponseEntity<Grade> saveGrade(@Valid @RequestBody Grade grade, @PathVariable Long studentId, @PathVariable Long courseId) {
         Grade savedGrade = gradeService.saveGrade(grade, studentId, courseId);
         return new ResponseEntity<>(savedGrade, HttpStatus.CREATED);
     }
 
     @PutMapping("/student/{studentId}/course/{courseId}")
-    public ResponseEntity<Grade> updateGrade(@RequestBody Grade grade, @PathVariable Long studentId, @PathVariable Long courseId) {
+    public ResponseEntity<Grade> updateGrade(@Valid @RequestBody Grade grade, @PathVariable Long studentId, @PathVariable Long courseId) {
         Grade updatedGrade = gradeService.updateGrade(grade.getScore(), studentId, courseId);
         return new ResponseEntity<>(updatedGrade, HttpStatus.OK);
     }

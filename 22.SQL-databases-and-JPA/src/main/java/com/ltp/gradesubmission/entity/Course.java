@@ -3,6 +3,7 @@ package com.ltp.gradesubmission.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -19,14 +20,17 @@ public class Course {
 
     @NonNull
     @Column(name = "subject", nullable = false)
+    @NotBlank(message = "Subject can not be blank")
     private String subject;
 
     @NonNull
     @Column(name = "code", nullable = false)
+    @NotBlank(message = "Code can not be blank")
     private String code;
 
     @NonNull
     @Column(name = "description", nullable = false)
+    @NotBlank(message = "Description can not be blank")
     private String description;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)

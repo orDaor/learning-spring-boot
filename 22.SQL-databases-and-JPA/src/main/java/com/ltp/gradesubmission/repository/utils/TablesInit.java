@@ -49,6 +49,7 @@ public class TablesInit {
     }
 
     public void addGrades() {
+        System.out.println("Started adGrades() init................");
         //store grades in the DB
         Grade grade_A = new Grade("A", students[0], courses[4]); //Harry, Physics
         Grade grade_B = new Grade("B", students[2], courses[3]); //Hermione, Deutsch
@@ -68,6 +69,7 @@ public class TablesInit {
 
         for (Grade grade : grades) {
             gradeRepository.save(grade);
+//            System.out.println("Saved grade with score: " + grade.getScore());
         }
     }
 

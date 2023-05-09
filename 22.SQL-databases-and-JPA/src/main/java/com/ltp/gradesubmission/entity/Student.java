@@ -3,6 +3,8 @@ package com.ltp.gradesubmission.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -36,10 +38,12 @@ public class Student {
 
     @NonNull
     @Column(name = "name", nullable = false) //we can not store NULL student names
+    @NotBlank(message = "Name can not be blank")
     private String name;
 
     @NonNull
     @Column(name = "birth_date", nullable = false) //we can not store NULL student birthdays
+    @Past(message = "Birth date must be in the past")
     private LocalDate birthDate;
 
     /* One student can be associated to many (a list of) grades
