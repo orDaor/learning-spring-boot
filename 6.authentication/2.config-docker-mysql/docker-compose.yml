@@ -14,9 +14,9 @@ services:
       MYSQL_ROOT_PASSWORD: 'password'
     #MySQL will run on port number
     ports:
-      - '5200:5200'
+      - '3306:3306'
     expose:
-      - '5200'
+      - '3306'
     #MySQL data will be maintained within a volume that exists on your machine
     volumes:
       - my-db:/var/lib/mysql

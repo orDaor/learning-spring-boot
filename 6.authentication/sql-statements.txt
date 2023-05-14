@@ -1,0 +1,3 @@
+SELECT * FROM db.student;
+SELECT * FROM db.course;
+SELECT * FROM db.grade;
