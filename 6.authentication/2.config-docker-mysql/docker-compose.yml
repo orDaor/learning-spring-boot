@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+  db:
+    #The Docker container will run an instance of MySQL 8.0
+    image: mysql/mysql-server:8.0
+    restart: always
+    environment:
+      #The MySQL instance will contain a database called "db"
+      MYSQL_DATABASE: 'db'
+      #The MySQL credentials are "user" and "password"
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      #The password for the default "root" user will also be "password"
+      MYSQL_ROOT_PASSWORD: 'password'
+    #MySQL will run on port number
+    ports:
+      - '5200:5200'
+    expose:
+      - '5200'
+    #MySQL data will be maintained within a volume that exists on your machine
+    volumes:
+      - my-db:/var/lib/mysql
+volumes:
+  my-db:
