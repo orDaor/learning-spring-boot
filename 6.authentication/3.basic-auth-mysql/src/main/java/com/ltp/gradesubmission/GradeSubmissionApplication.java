@@ -1,17 +1,10 @@
 package com.ltp.gradesubmission;
 
-import com.ltp.gradesubmission.entity.Grade;
-import com.ltp.gradesubmission.entity.Student;
-import com.ltp.gradesubmission.repository.GradeRepository;
-import com.ltp.gradesubmission.repository.StudentRepository;
 import com.ltp.gradesubmission.repository.utils.TablesInit;
-import com.ltp.gradesubmission.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.time.LocalDate;
 
 @SpringBootApplication
 public class GradeSubmissionApplication implements CommandLineRunner {
@@ -33,6 +26,8 @@ public class GradeSubmissionApplication implements CommandLineRunner {
 		tablesInit.addCourses();
 
 		tablesInit.addGrades();
+
+		tablesInit.addUsers();
 
 	}
 }

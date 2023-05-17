@@ -3,10 +3,13 @@ package com.ltp.gradesubmission.repository.utils;
 import com.ltp.gradesubmission.entity.Course;
 import com.ltp.gradesubmission.entity.Grade;
 import com.ltp.gradesubmission.entity.Student;
+import com.ltp.gradesubmission.entity.User;
 import com.ltp.gradesubmission.repository.CourseRepository;
 import com.ltp.gradesubmission.repository.GradeRepository;
 import com.ltp.gradesubmission.repository.StudentRepository;
+import com.ltp.gradesubmission.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -23,11 +26,20 @@ public class TablesInit {
     @Autowired
     private CourseRepository courseRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     private Student[] students;
 
     private Grade[] grades;
 
     private Course[] courses;
+
+    private User[] users;
+
 
     public void addStudents() {
         //store students in the DB
@@ -95,5 +107,23 @@ public class TablesInit {
         }
 
     }
+
+    public void addUsers() {
+
+        User user_Admin = new User("admin", passwordEncoder.encode("admin-psw"));
+
+        User user_User = new User("user", passwordEncoder.encode("user-psw"));
+
+        users = new User[]  {
+                user_Admin,
+                user_User
+        };
+
+        for (User user : users) {
+            userRepository.save(user);
+        }
+
+    }
+
 
 }
