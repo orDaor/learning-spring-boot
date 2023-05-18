@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GradeSubmissionApplication implements CommandLineRunner {
 
 	@Autowired
-	TablesInit tablesInit;
+	private TablesInit tablesInit;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GradeSubmissionApplication.class, args);
@@ -30,4 +30,5 @@ public class GradeSubmissionApplication implements CommandLineRunner {
 		tablesInit.addUsers();
 
 	}
+
 }

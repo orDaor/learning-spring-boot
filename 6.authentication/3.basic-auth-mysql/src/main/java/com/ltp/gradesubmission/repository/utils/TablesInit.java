@@ -27,10 +27,9 @@ public class TablesInit {
     private CourseRepository courseRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     private Student[] students;
 
@@ -61,7 +60,6 @@ public class TablesInit {
     }
 
     public void addGrades() {
-        System.out.println("Started adGrades() init................");
         //store grades in the DB
         Grade grade_A = new Grade("A", students[0], courses[4]); //Harry, Physics
         Grade grade_B = new Grade("B", students[2], courses[3]); //Hermione, Deutsch
@@ -124,6 +122,5 @@ public class TablesInit {
         }
 
     }
-
 
 }

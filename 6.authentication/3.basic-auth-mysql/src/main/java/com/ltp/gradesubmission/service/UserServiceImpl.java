@@ -4,6 +4,7 @@ import com.ltp.gradesubmission.entity.User;
 import com.ltp.gradesubmission.exception.UserNotFoundException;
 import com.ltp.gradesubmission.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,9 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public User getUserById(Long id) {
@@ -49,6 +52,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) {
+        //hash password before saving the use
+        String receivedPassword = user.getPassword();
+        String hashedPassword = passwordEncoder.encode(receivedPassword);
+        user.setPassword(hashedPassword);
+
+        //save the new user
         return userRepository.save(user);
     }
 
@@ -56,4 +65,5 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
 }
