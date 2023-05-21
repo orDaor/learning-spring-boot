@@ -1,50 +1,55 @@
 package com.ltp.gradesubmission.web;
 
-import com.ltp.gradesubmission.entity.User;
-import com.ltp.gradesubmission.service.UserService;
+import com.ltp.gradesubmission.dto.UserData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping(value = "/user")
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private BCryptPasswordEncoder passwordEncoder;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    @Autowired
+    private UserDetailsManager userDetailsManager;
+
+    @PostMapping(value = "/login")
+    public ResponseEntity<HttpStatus> login() {
+        /*we enter here only if login request was successfully authenticated by spring security */
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<User> getUserByUsername(@RequestParam String username) {
-        User user = userService.getUserByUsername(username);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    @PostMapping(value = "/signup")
+    public ResponseEntity<HttpStatus> signup(@RequestBody UserData userData) {
+        System.out.println(userData);
+
+        String username = userData.getUsername();
+        String password = userData.getPassword();
+
+        UserDetails newUser = User.builder()
+                                .username(username)
+                                .password(passwordEncoder.encode(password))
+                                .roles("USER")
+                                .build();
+
+        userDetailsManager.createUser(newUser);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<User>> getUsers() {
-        List<User> users = userService.getUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    @PostMapping(value = "/logout")
+    public ResponseEntity<HttpStatus> logout() {
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
-    @PostMapping
-    public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
-        User savedUser = userService.saveUser(user);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 }
