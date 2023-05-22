@@ -1,4 +1,4 @@
-package com.ltp.gradesubmission.security;
+package com.ltp.gradesubmission.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

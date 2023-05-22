@@ -31,9 +31,4 @@ public class GradeSubmissionApplication implements CommandLineRunner {
 
 	}
 
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
 }
