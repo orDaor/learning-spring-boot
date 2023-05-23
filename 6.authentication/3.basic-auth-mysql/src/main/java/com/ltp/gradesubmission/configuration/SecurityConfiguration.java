@@ -7,6 +7,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
@@ -61,29 +63,38 @@ public class SecurityConfiguration  {
         return http.build();
     }
 
-    /*when the application starts-up, this bean is registered and will possibly contain the below
-    defined users*/
+    /*when the application starts-up, this bean is registered and will be possible to use it inside the services
+    * for querying the "users" table in the DB
+    *
+    * NOTE --> both users and authorities table mustbe created "by hand" before the application runs*/
     @Bean
     public UserDetailsManager users(DataSource dataSource) {
-        //standard user
-        UserDetails user = User.builder()
-                .username("user")
-                .password(passwordEncoder.encode("user-psw"))
-                .roles("USER")
-                .build();
-
-        //admin
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder.encode("admin-psw"))
-                .roles("USER", "ADMIN")
-                .build();
-
 
         JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
 
-        users.createUser(user);
-        users.createUser(admin);
+        //save these users in the database when application starts up, if they do no already exists
+
+        if (!users.userExists("admin")) {
+            //create and save user with username = "user"
+            UserDetails admin = User.builder()
+                    .username("admin")
+                    .password(passwordEncoder.encode("admin-psw"))
+                    .roles("USER", "ADMIN")
+                    .build();
+
+            users.createUser(admin);
+        }
+
+        if (!users.userExists("user")) {
+            //create and save user with username = "user"
+            UserDetails user = User.builder()
+                    .username("user")
+                    .password(passwordEncoder.encode("user-psw"))
+                    .roles("USER")
+                    .build();
+
+            users.createUser(user);
+        }
 
         return users;
     }
@@ -92,7 +103,7 @@ public class SecurityConfiguration  {
     @Bean
     public CookieSerializer cookieSerializer() {
         DefaultCookieSerializer serializer = new DefaultCookieSerializer();
-        serializer.setCookieMaxAge(3600); //seconds
+        serializer.setCookieMaxAge(3600); //seconds (this is set the same as the sesison duration)
         return serializer;
     }
 
