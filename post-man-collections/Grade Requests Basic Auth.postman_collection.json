@@ -42,19 +42,7 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "user@est.com",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "test",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [],
@@ -82,7 +70,7 @@
 					"response": []
 				},
 				{
-					"name": "Read Students",
+					"name": "Read All Students",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -218,7 +206,7 @@
 					"response": []
 				},
 				{
-					"name": "Read Grades",
+					"name": "Read All Grades",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -341,7 +329,7 @@
 					"response": []
 				},
 				{
-					"name": "Read Courses",
+					"name": "Read All Courses",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -381,7 +369,7 @@
 			]
 		},
 		{
-			"name": "User",
+			"name": "User Auth Default",
 			"item": [
 				{
 					"name": "Login",
@@ -391,12 +379,12 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "test",
+									"value": "test-edit",
 									"type": "string"
 								},
 								{
 									"key": "username",
-									"value": "user@est.com",
+									"value": "user",
 									"type": "string"
 								}
 							]
@@ -424,7 +412,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"user@est.com\",\r\n    \"password\": \"test\",\r\n    \"firstname\": \"Orgher\",\r\n    \"surname\": \"Dalipi\",\r\n    \"age\": 31\r\n}",
+							"raw": "{\r\n    \"username\": \"orgher\",\r\n    \"password\": \"test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -459,6 +447,121 @@
 							"path": [
 								"user",
 								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Authenticated User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/user",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/user/user",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/user/orgher",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user",
+								"orgher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passwordChange\": [\"admin-psw\", \"admin-psw-new\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4200/user/update",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"test-edit\",\r\n    \"roles\": [\"ADMIN\", \"USER\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4200/user/update",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user",
+								"update"
 							]
 						}
 					},
