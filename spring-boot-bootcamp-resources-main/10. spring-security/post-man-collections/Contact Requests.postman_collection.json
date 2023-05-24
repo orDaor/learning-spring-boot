@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "93ab591c-e011-4a66-96b8-3abead8797c7",
+		"name": "Contact Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetOneContact",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4200/contact/123",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"contact",
+						"123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Contacts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4200/contact/all",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"contact",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create One Contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"name\": \"John\",\r\n    \"phoneNumber\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4200/contact",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"contact"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update One Contact",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"c54a97cf-c7eb-4427-9dca-7279af815e0c\",\r\n    \"name\": \"Tyrion Lannister - updated x2\",\r\n    \"phoneNumber\": \"4515429321 - updated x2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4200/contact/c54a97cf-c7eb-4427-9dca-7279af815e0c",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"contact",
+						"c54a97cf-c7eb-4427-9dca-7279af815e0c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete One Contact",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:4200/contact/c2b55fb7-959d-4655-bd5e-dc4b13c8081f",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"contact",
+						"c2b55fb7-959d-4655-bd5e-dc4b13c8081f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Swagger Definition",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4200/v3/api-docs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"v3",
+						"api-docs"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,573 @@
+{
+	"info": {
+		"_postman_id": "dcc806a5-4ad7-4cb7-ac1f-d4a6e95d0691",
+		"name": "Grade Requests Basic Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "Create Student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Orgher 3\",\n    \"birthDate\": \"2000-11-05\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4200/student",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Student",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4200/student/1",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"student",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read All Students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/student/all",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"student",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Student",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/student/55",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"student",
+								"55"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Grade",
+			"item": [
+				{
+					"name": "Create Grade",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"score\": \"A-\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4200/grade/student/4/course/3",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"grade",
+								"student",
+								"4",
+								"course",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Grade",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/grade/student/1/course/18",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"grade",
+								"student",
+								"1",
+								"course",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Student Grades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/grade/student/30",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"grade",
+								"student",
+								"30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Course Grades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/grade/course/40",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"grade",
+								"course",
+								"40"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read All Grades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/grade/all",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"grade",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Grade",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"score\": \"A++\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4200/grade/student/30/course/4",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"grade",
+								"student",
+								"30",
+								"course",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Grade",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/grade/student/4/course/55",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"grade",
+								"student",
+								"4",
+								"course",
+								"55"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Course",
+			"item": [
+				{
+					"name": "Create Course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subject\": \"\",\n    \"code\": \" \",\n    \"description\": \"    \"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4200/course",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"course"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Course",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/course/55",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"course",
+								"55"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read All Courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/course/all",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"course",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Course",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/course/44",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"course",
+								"44"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Auth Default",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "test-edit",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"orgher\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4200/user/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/user/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Authenticated User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/user",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/user/user",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4200/user/orgher",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user",
+								"orgher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passwordChange\": [\"admin-psw\", \"admin-psw-new\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4200/user/update",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"test-edit\",\r\n    \"roles\": [\"ADMIN\", \"USER\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4200/user/update",
+							"host": [
+								"localhost"
+							],
+							"port": "4200",
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
