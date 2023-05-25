@@ -20,15 +20,15 @@ public class GradeSubmissionApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		//pupulate DB with at least an admin user
-		tablesInit.addUsers();
+		//save the "admin" user with role = ADMIN
+		tablesInit.saveAdminUser();
 
-		//pupulate DBs with other data
-		tablesInit.addStudents();
+		//pupulate other tables with some initial data
+		tablesInit.saveStudents();
 
-		tablesInit.addCourses();
+		tablesInit.saveCourses();
 
-		tablesInit.addGrades();
+		tablesInit.saveGrades();
 
 	}
 

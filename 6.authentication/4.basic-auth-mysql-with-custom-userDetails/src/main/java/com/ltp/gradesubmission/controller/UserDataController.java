@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,9 +22,6 @@ public class UserDataController {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    private UserDetailsManager userDetailsManager;
-
-    @Autowired
     private UserDataService userDataService;
 
     @PostMapping(value = "/login")
@@ -36,7 +32,6 @@ public class UserDataController {
 
     @PostMapping(value = "/signup")
     public ResponseEntity<UserData> signup(@Valid @RequestBody UserData userData) {
-        System.out.println(userData);
 
          userDataService.registerUser(userData);
 

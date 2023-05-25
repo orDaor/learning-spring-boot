@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "dcc806a5-4ad7-4cb7-ac1f-d4a6e95d0691",
-		"name": "Grade Requests Basic Auth",
+		"_postman_id": "376a6781-9dd1-4fcf-8129-239bd3df5cba",
+		"name": "Grade Requests Basic Auth - DEFAULT UserDetails",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [

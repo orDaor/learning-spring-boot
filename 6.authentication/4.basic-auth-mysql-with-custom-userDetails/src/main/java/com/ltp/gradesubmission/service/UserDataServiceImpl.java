@@ -48,7 +48,7 @@ public class UserDataServiceImpl implements UserDataService {
         UserData savedUserData = userDataRepository.save(userData);
 
         //save the authorities for this user
-        UserAuthority userAuthority = new UserAuthority(savedUserData.getUsername(), "USER");
+        UserAuthority userAuthority = new UserAuthority(savedUserData.getUsername(), "ROLE_USER");
         userAuthorityRepository.save(userAuthority);
 
         return userData;
@@ -61,11 +61,10 @@ public class UserDataServiceImpl implements UserDataService {
         String currentHashedPassword = authenticatedUserData.getPassword(); //this is hashed!
 
         String oldPassword = passwordChange.get(0);
-        String oldHashedPassword = passwordEncoder.encode(oldPassword);
         String newPassword = passwordChange.get(1);
 
-        //check if old password match
-        if (!oldHashedPassword.equals(currentHashedPassword)) {
+        //check if old password match with the one currently stored in the DB
+        if (!passwordEncoder.matches(oldPassword, currentHashedPassword)) {
             throw new PasswordChangeException();
         }
 
@@ -79,14 +78,18 @@ public class UserDataServiceImpl implements UserDataService {
     @Override
     public UserData updateUser(UserData userData) {
 
-        //update the user data
+        //has received password and update the user data
+        String password = userData.getPassword();
+        String hashedPassword = passwordEncoder.encode(password);
+        userData.setPassword(hashedPassword);
         UserData updatedUserData = userDataRepository.save(userData);
+
+        //fetch the user authorities data from the database
+        List<UserAuthority> authorities = updatedUserData.getAuthorities();
 
         /*A new role is added in the authorities table for the specified user, only if
         * the user does not already contain that role*/
         String role = userData.getRole();
-
-        List<UserAuthority> authorities = updatedUserData.getAuthorities();
 
         List<String> authorityNames = new ArrayList<>();
 

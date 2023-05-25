@@ -1,6 +1,5 @@
 package com.ltp.gradesubmission.entity;
 
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

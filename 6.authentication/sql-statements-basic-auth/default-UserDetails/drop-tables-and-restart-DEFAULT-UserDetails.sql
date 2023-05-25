@@ -2,6 +2,9 @@ DROP TABLE IF EXISTS db.SPRING_SESSION_ATTRIBUTES;
 DROP TABLE IF EXISTS db.SPRING_SESSION;
 DROP TABLE IF EXISTS db.authorities;
 DROP TABLE IF EXISTS db.users;
+DROP TABLE IF EXISTS db.user_data;
+DROP TABLE IF EXISTS db.user_authority;
+
 
 create table if not exists db.users(
 	username varchar(50) not null primary key,
