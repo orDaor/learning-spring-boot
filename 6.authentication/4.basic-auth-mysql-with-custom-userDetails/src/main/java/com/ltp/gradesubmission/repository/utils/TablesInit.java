@@ -116,7 +116,7 @@ public class TablesInit {
         userDataRepository.save(user_ADMIN);
 
         //save authority "ADMIN" for the "admin" user
-        UserAuthority userAuthority = new UserAuthority(user_ADMIN.getUsername(), "ROLE_ADMIN");
+        UserAuthority userAuthority = new UserAuthority(user_ADMIN, "ROLE_ADMIN");
 
         userAuthorityRepository.save(userAuthority);
 

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserDataServiceImpl implements UserDataService {
@@ -48,7 +49,7 @@ public class UserDataServiceImpl implements UserDataService {
         UserData savedUserData = userDataRepository.save(userData);
 
         //save the authorities for this user
-        UserAuthority userAuthority = new UserAuthority(savedUserData.getUsername(), "ROLE_USER");
+        UserAuthority userAuthority = new UserAuthority(savedUserData, "ROLE_USER");
         userAuthorityRepository.save(userAuthority);
 
         return userData;
@@ -78,14 +79,19 @@ public class UserDataServiceImpl implements UserDataService {
     @Override
     public UserData updateUser(UserData userData) {
 
-        //has received password and update the user data
+        //update the user data with received hashed password
         String password = userData.getPassword();
         String hashedPassword = passwordEncoder.encode(password);
         userData.setPassword(hashedPassword);
         UserData updatedUserData = userDataRepository.save(userData);
 
         //fetch the user authorities data from the database
-        List<UserAuthority> authorities = updatedUserData.getAuthorities();
+        Optional<List<UserAuthority>> authoritiesOptional
+                = userAuthorityRepository.findAllByUserDataUsername(updatedUserData.getUsername());
+
+        List<UserAuthority> authorities = authoritiesOptional.get();
+
+        updatedUserData.setAuthorities(authorities);
 
         /*A new role is added in the authorities table for the specified user, only if
         * the user does not already contain that role*/
@@ -98,8 +104,9 @@ public class UserDataServiceImpl implements UserDataService {
         }
 
         if (!authorityNames.contains(role)) {
-            UserAuthority userAuthority = new UserAuthority(updatedUserData.getUsername(), role);
+            UserAuthority userAuthority = new UserAuthority(updatedUserData, role);
             userAuthorityRepository.save(userAuthority);
+            updatedUserData.getAuthorities().add(userAuthority);
         }
 
         return updatedUserData;
